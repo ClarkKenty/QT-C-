@@ -7,12 +7,14 @@
 #include <QString>
 #include <QtDebug>
 #include <QMessageBox>
+#include <QDateTime>
 
 QVector<QString> names;
 QVector<QString> category;
 QVector<int> price;
 QVector<int> num;
 QVector<int> saves;
+QVector<QString> timesaves;
 
 Application::Application(QWidget *parent) :
     QMainWindow(parent),
@@ -55,7 +57,7 @@ void Application::on_pushButton_clicked()
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
-            warning->setText("请输入其余点餐信息");
+            warning->setText("请输入所有点餐信息");
             warning->show();
             return;
         }
@@ -82,22 +84,34 @@ void Application::on_pushButton_clicked()
 
 void Application::on_billing_clicked()
 {
-    ui->table->clear();
-    ui->table->setRowCount(0);
     int totalprice = 0;
     for(int i =0;i<num.size();i++)
     {
         totalprice+=num[i]*price[i];
     }
+    if(totalprice == 0)
+    {
+        QMessageBox* warning = new QMessageBox();
+        warning->setWindowTitle("Warning");
+        warning->setText("无法生成空白订单!");
+        warning->show();
+        return;
+    }
+    QDateTime current_time = QDateTime::currentDateTime();
+    QString date_time = current_time.toString("yyyy.MM.dd hh:mm:ss");
+    ui->table->clear();
+    ui->table->setRowCount(0);
     saves.push_back(totalprice);
+    timesaves.push_back(date_time);
     names.clear();
     category.clear();
     names.clear();
     num.clear();
     QMessageBox* bill = new QMessageBox();
-    bill->setWindowTitle("结账金额");
-    bill->setText("总金额为：" + QString::number(totalprice));
+    bill->setWindowTitle("订单金额");
+    bill->setText("创建订单成功！总金额为：" + QString::number(totalprice));
     bill->show();
+    ui->suclog->append("生成订单! 订单金额："+QString::number(totalprice)+" 时间：" + date_time);
 }
 
 void Application::on_pushButton_3_clicked()

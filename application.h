@@ -25,6 +25,11 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_billing_2_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void changetable(QVector<QString> msg);
 private:
     Ui::Application *ui;
 };

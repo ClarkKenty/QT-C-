@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>foodmenu</class>
+ <widget class="QWidget" name="foodmenu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>571</width>
+    <height>593</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>481</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 18pt &quot;Adobe Devanagari&quot;;
+color:rgb(0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>菜单</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="menulist">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>541</width>
+     <height>421</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::SingleSelection</enum>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
+   </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideRight</enum>
+   </property>
+   <property name="horizontalScrollMode">
+    <enum>QAbstractItemView::ScrollPerItem</enum>
+   </property>
+   <property name="rowCount">
+    <number>49</number>
+   </property>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <column>
+    <property name="text">
+     <string>名称</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>种类</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>单价</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>评分</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>凉拌腐竹木耳</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>秋葵拌萝卜丝</string>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="1" column="2">
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="text">
+     <string>手撕驴肉</string>
+    </property>
+   </item>
+   <item row="2" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="2" column="2">
+    <property name="text">
+     <string>25</string>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string>千张包</string>
+    </property>
+   </item>
+   <item row="3" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="3" column="2">
+    <property name="text">
+     <string>15</string>
+    </property>
+   </item>
+   <item row="4" column="0">
+    <property name="text">
+     <string>香卤脆肠</string>
+    </property>
+   </item>
+   <item row="4" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="4" column="2">
+    <property name="text">
+     <string>12</string>
+    </property>
+   </item>
+   <item row="5" column="0">
+    <property name="text">
+     <string>五香牛肉</string>
+    </property>
+   </item>
+   <item row="5" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="5" column="2">
+    <property name="text">
+     <string>25</string>
+    </property>
+   </item>
+   <item row="6" column="0">
+    <property name="text">
+     <string>桂糖雪梨拌苦瓜</string>
+    </property>
+   </item>
+   <item row="6" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="6" column="2">
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item row="7" column="0">
+    <property name="text">
+     <string>凉拌三丝</string>
+    </property>
+   </item>
+   <item row="7" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="7" column="2">
+    <property name="text">
+     <string>11</string>
+    </property>
+   </item>
+   <item row="8" column="0">
+    <property name="text">
+     <string>炝拌文笋</string>
+    </property>
+   </item>
+   <item row="8" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="8" column="2">
+    <property name="text">
+     <string>12</string>
+    </property>
+   </item>
+   <item row="9" column="0">
+    <property name="text">
+     <string>三色翡翠</string>
+    </property>
+   </item>
+   <item row="9" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="9" column="2">
+    <property name="text">
+     <string>14</string>
+    </property>
+   </item>
+   <item row="10" column="0">
+    <property name="text">
+     <string>卤牛肉</string>
+    </property>
+   </item>
+   <item row="10" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="10" column="2">
+    <property name="text">
+     <string>26</string>
+    </property>
+   </item>
+   <item row="11" column="0">
+    <property name="text">
+     <string>蔬菜沙拉</string>
+    </property>
+   </item>
+   <item row="11" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="11" column="2">
+    <property name="text">
+     <string>15</string>
+    </property>
+   </item>
+   <item row="12" column="0">
+    <property name="text">
+     <string>香辣牛腱子</string>
+    </property>
+   </item>
+   <item row="12" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="12" column="2">
+    <property name="text">
+     <string>28</string>
+    </property>
+   </item>
+   <item row="13" column="0">
+    <property name="text">
+     <string>甜虾刺身</string>
+    </property>
+   </item>
+   <item row="13" column="1">
+    <property name="text">
+     <string>凉菜</string>
+    </property>
+   </item>
+   <item row="13" column="2">
+    <property name="text">
+     <string>22</string>
+    </property>
+   </item>
+   <item row="14" column="0">
+    <property name="text">
+     <string>翡翠白玉卷</string>
+    </property>
+   </item>
+   <item row="14" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="14" column="2">
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item row="15" column="0">
+    <property name="text">
+     <string>花雕醉鸡</string>
+    </property>
+   </item>
+   <item row="15" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="15" column="2">
+    <property name="text">
+     <string>45</string>
+    </property>
+   </item>
+   <item row="16" column="0">
+    <property name="text">
+     <string>辣子鸡</string>
+    </property>
+   </item>
+   <item row="16" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="16" column="2">
+    <property name="text">
+     <string>40</string>
+    </property>
+   </item>
+   <item row="17" column="0">
+    <property name="text">
+     <string>糖醋里脊</string>
+    </property>
+   </item>
+   <item row="17" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="17" column="2">
+    <property name="text">
+     <string>40</string>
+    </property>
+   </item>
+   <item row="18" column="0">
+    <property name="text">
+     <string>红烧牛肉</string>
+    </property>
+   </item>
+   <item row="18" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="18" column="2">
+    <property name="text">
+     <string>60</string>
+    </property>
+   </item>
+   <item row="19" column="0">
+    <property name="text">
+     <string>椒盐蒜香鸡翅</string>
+    </property>
+   </item>
+   <item row="19" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="19" column="2">
+    <property name="text">
+     <string>35</string>
+    </property>
+   </item>
+   <item row="20" column="0">
+    <property name="text">
+     <string>开水白菜</string>
+    </property>
+   </item>
+   <item row="20" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="20" column="2">
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item row="21" column="0">
+    <property name="text">
+     <string>香芋扣肉</string>
+    </property>
+   </item>
+   <item row="21" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="21" column="2">
+    <property name="text">
+     <string>45</string>
+    </property>
+   </item>
+   <item row="22" column="0">
+    <property name="text">
+     <string>东坡肉</string>
+    </property>
+   </item>
+   <item row="22" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="22" column="2">
+    <property name="text">
+     <string>60</string>
+    </property>
+   </item>
+   <item row="23" column="0">
+    <property name="text">
+     <string>蟹粉狮子头</string>
+    </property>
+   </item>
+   <item row="23" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="23" column="2">
+    <property name="text">
+     <string>60</string>
+    </property>
+   </item>
+   <item row="24" column="0">
+    <property name="text">
+     <string>水煮肉片</string>
+    </property>
+   </item>
+   <item row="24" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="24" column="2">
+    <property name="text">
+     <string>50</string>
+    </property>
+   </item>
+   <item row="25" column="0">
+    <property name="text">
+     <string>酸汤肥牛</string>
+    </property>
+   </item>
+   <item row="25" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="25" column="2">
+    <property name="text">
+     <string>50</string>
+    </property>
+   </item>
+   <item row="26" column="0">
+    <property name="text">
+     <string>酱烧三道鳞</string>
+    </property>
+   </item>
+   <item row="26" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="26" column="2">
+    <property name="text">
+     <string>49</string>
+    </property>
+   </item>
+   <item row="27" column="0">
+    <property name="text">
+     <string>香菇酿肉</string>
+    </property>
+   </item>
+   <item row="27" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="27" column="2">
+    <property name="text">
+     <string>50</string>
+    </property>
+   </item>
+   <item row="28" column="0">
+    <property name="text">
+     <string>香煎红膏蟹</string>
+    </property>
+   </item>
+   <item row="28" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="28" column="2">
+    <property name="text">
+     <string>52</string>
+    </property>
+   </item>
+   <item row="29" column="0">
+    <property name="text">
+     <string>椒盐龙虾</string>
+    </property>
+   </item>
+   <item row="29" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="29" column="2">
+    <property name="text">
+     <string>55</string>
+    </property>
+   </item>
+   <item row="30" column="0">
+    <property name="text">
+     <string>糟香烤猪排</string>
+    </property>
+   </item>
+   <item row="30" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="30" column="2">
+    <property name="text">
+     <string>55</string>
+    </property>
+   </item>
+   <item row="31" column="0">
+    <property name="text">
+     <string>蒜蓉粉丝蒸鲍鱼</string>
+    </property>
+   </item>
+   <item row="31" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="31" column="2">
+    <property name="text">
+     <string>60</string>
+    </property>
+   </item>
+   <item row="32" column="0">
+    <property name="text">
+     <string>虎头鸡块</string>
+    </property>
+   </item>
+   <item row="32" column="1">
+    <property name="text">
+     <string>热菜</string>
+    </property>
+   </item>
+   <item row="32" column="2">
+    <property name="text">
+     <string>39</string>
+    </property>
+   </item>
+   <item row="33" column="0">
+    <property name="text">
+     <string>鲜菇杂菌浓汤</string>
+    </property>
+   </item>
+   <item row="33" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="33" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item row="34" column="0">
+    <property name="text">
+     <string>苦瓜煲鸭壳汤</string>
+    </property>
+   </item>
+   <item row="34" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="34" column="2">
+    <property name="text">
+     <string>35</string>
+    </property>
+   </item>
+   <item row="35" column="0">
+    <property name="text">
+     <string>煲鸡汤</string>
+    </property>
+   </item>
+   <item row="35" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="35" column="2">
+    <property name="text">
+     <string>40</string>
+    </property>
+   </item>
+   <item row="36" column="0">
+    <property name="text">
+     <string>煲鸭汤</string>
+    </property>
+   </item>
+   <item row="36" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="36" column="2">
+    <property name="text">
+     <string>45</string>
+    </property>
+   </item>
+   <item row="37" column="0">
+    <property name="text">
+     <string>冬瓜花蛤汤</string>
+    </property>
+   </item>
+   <item row="37" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="37" column="2">
+    <property name="text">
+     <string>55</string>
+    </property>
+   </item>
+   <item row="38" column="0">
+    <property name="text">
+     <string>排骨汤</string>
+    </property>
+   </item>
+   <item row="38" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="38" column="2">
+    <property name="text">
+     <string>50</string>
+    </property>
+   </item>
+   <item row="39" column="0">
+    <property name="text">
+     <string>羊肉汤</string>
+    </property>
+   </item>
+   <item row="39" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="39" column="2">
+    <property name="text">
+     <string>55</string>
+    </property>
+   </item>
+   <item row="40" column="0">
+    <property name="text">
+     <string>南瓜羹</string>
+    </property>
+   </item>
+   <item row="40" column="1">
+    <property name="text">
+     <string>汤</string>
+    </property>
+   </item>
+   <item row="40" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item row="41" column="0">
+    <property name="text">
+     <string>香草蛋奶糕</string>
+    </property>
+   </item>
+   <item row="41" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="41" column="2">
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item row="42" column="0">
+    <property name="text">
+     <string>马蹄糕</string>
+    </property>
+   </item>
+   <item row="42" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="42" column="2">
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item row="43" column="0">
+    <property name="text">
+     <string>大枣豆沙发糕</string>
+    </property>
+   </item>
+   <item row="43" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="43" column="2">
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item row="44" column="0">
+    <property name="text">
+     <string>猪肉包</string>
+    </property>
+   </item>
+   <item row="44" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="44" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item row="45" column="0">
+    <property name="text">
+     <string>梅干菜包</string>
+    </property>
+   </item>
+   <item row="45" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="45" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item row="46" column="0">
+    <property name="text">
+     <string>青菜包</string>
+    </property>
+   </item>
+   <item row="46" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="46" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item row="47" column="0">
+    <property name="text">
+     <string>烧麦</string>
+    </property>
+   </item>
+   <item row="47" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="47" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item row="48" column="0">
+    <property name="text">
+     <string>蒸饺</string>
+    </property>
+   </item>
+   <item row="48" column="1">
+    <property name="text">
+     <string>甜点</string>
+    </property>
+   </item>
+   <item row="48" column="2">
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>368</x>
+     <y>503</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>添加</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>20</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>评分</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>550</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>清除所有评分</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>510</y>
+     <width>217</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>数量(1-99)：</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="countedit"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

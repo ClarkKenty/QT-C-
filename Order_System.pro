@@ -10,16 +10,22 @@ CONFIG += c++11
 
 SOURCES += \
     application.cpp \
+    foodmenu.cpp \
     main.cpp \
-    login.cpp
+    login.cpp \
+    management.cpp
 
 HEADERS += \
     application.h \
-    login.h
+    foodmenu.h \
+    login.h \
+    management.h
 
 FORMS += \
     application.ui \
-    login.ui
+    foodmenu.ui \
+    login.ui \
+    management.ui
 
 RC_ICONS = order_menu.ico
 # Default rules for deployment.

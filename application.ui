@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
+    <width>665</width>
     <height>658</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>20</y>
+      <x>100</x>
+      <y>10</y>
       <width>481</width>
       <height>51</height>
      </rect>
@@ -28,7 +28,7 @@
 color:rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>酒店点餐系统</string>
+     <string>点餐系统</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -39,7 +39,7 @@ color:rgb(0, 0, 0);</string>
      <rect>
       <x>10</x>
       <y>110</y>
-      <width>781</width>
+      <width>641</width>
       <height>341</height>
      </rect>
     </property>
@@ -71,11 +71,6 @@ color:rgb(0, 0, 0);</string>
       <string>总价</string>
      </property>
     </column>
-    <column>
-     <property name="text">
-      <string>评分</string>
-     </property>
-    </column>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
@@ -93,14 +88,14 @@ color:rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="billing">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>300</x>
       <y>470</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>生成订单</string>
+     <string>结账</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
@@ -157,13 +152,39 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="billing_2">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>470</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>订单管理</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>70</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开菜单</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>806</width>
+     <width>665</width>
      <height>25</height>
     </rect>
    </property>

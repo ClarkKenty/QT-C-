@@ -8,6 +8,9 @@
 #include <QtDebug>
 #include <QMessageBox>
 #include <QDateTime>
+#include "management.h"
+#include <QFile>
+#include "foodmenu.h"
 
 QVector<QString> names;
 QVector<QString> category;
@@ -15,6 +18,8 @@ QVector<int> price;
 QVector<int> num;
 QVector<int> saves;
 QVector<QString> timesaves;
+QVector<QString> loginfo;
+int ordercount;
 
 Application::Application(QWidget *parent) :
     QMainWindow(parent),
@@ -99,19 +104,62 @@ void Application::on_billing_clicked()
     }
     QDateTime current_time = QDateTime::currentDateTime();
     QString date_time = current_time.toString("yyyy.MM.dd hh:mm:ss");
-    ui->table->clear();
+    ui->table->clearContents();
     ui->table->setRowCount(0);
     saves.push_back(totalprice);
     timesaves.push_back(date_time);
-    names.clear();
-    category.clear();
-    names.clear();
-    num.clear();
     QMessageBox* bill = new QMessageBox();
     bill->setWindowTitle("订单金额");
     bill->setText("创建订单成功！总金额为：" + QString::number(totalprice));
     bill->show();
     ui->suclog->append("生成订单! 订单金额："+QString::number(totalprice)+" 时间：" + date_time);
+    ui->suclog->append("======订单内容======");
+    QFile file2("count.txt");
+    file2.open(QIODevice::ReadWrite| QIODevice::Text);
+    QTextStream getnum(&file2);
+    QString numcount = getnum.readLine();
+    if(numcount!="")
+    {
+        ordercount = numcount.toInt();
+    }
+    else ordercount = 1;
+    file2.close();
+    file2.open(QIODevice::WriteOnly| QIODevice::Text);
+    QTextStream writenum(&file2);
+    writenum<<ordercount+1;
+    file2.close();
+    QString logg;
+    QString logg2;
+    logg2.append("订单编号：#"+QString::number(ordercount) + " 订单金额："+QString::number(totalprice)+" 时间：" + date_time+"\n");
+    logg.append("订单金额："+QString::number(totalprice)+" 时间：" + date_time+"\n");
+    QFile filehis("saves.txt");
+    filehis.open(QIODevice::WriteOnly| QIODevice::Text | QIODevice::Append);
+    QTextStream writee(&filehis);
+    writee.setCodec("utf-8");
+    writee<<logg2;
+    filehis.close();
+    logg.append("======订单内容======\n");
+    for(int i =0 ;i<names.size();i++)
+    {
+        ui->suclog->append(names[i]+" x"+QString::number(num[i]));
+        logg.append(names[i]+" x"+QString::number(num[i]));
+        logg.append("\n");
+    }
+
+    names.clear();
+    category.clear();
+    names.clear();
+    num.clear();
+    ui->suclog->append("===================");
+    logg.append("===================\n\n");
+    loginfo.push_back(logg);
+
+    QFile file("history.txt");
+    file.open(QIODevice::WriteOnly| QIODevice::Text | QIODevice::Append);
+    QTextStream writehis(&file);
+    writehis.setCodec("utf-8");
+    writehis<<logg;
+    file.close();
 }
 
 void Application::on_pushButton_3_clicked()
@@ -183,7 +231,7 @@ void Application::on_pushButton_2_clicked()
             warning->show();
             return;
         }
-        if(num1->text().toInt()>ui->table->rowCount())
+        if(num1->text().toInt()>ui->table->rowCount() || num1->text().toInt()<=0)
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
@@ -226,4 +274,48 @@ void Application::on_pushButton_2_clicked()
         ui->table->setItem(serial-1,4,item5);
         diag.close();
     }
+}
+
+void Application::on_billing_2_clicked()
+{
+    if(mode==2)
+    {
+        QMessageBox* fail = new QMessageBox();
+        fail->setWindowTitle("失败");
+        fail->setText("操作失败！需要管理员权限！");;
+        fail->show();
+        return;
+    }
+    management* manage = new management();
+    manage->setWindowTitle("订单管理");
+    manage->show();
+}
+
+void Application::on_pushButton_4_clicked()
+{
+    foodmenu* menuwidget = new foodmenu();
+    menuwidget->setWindowTitle("菜单");
+    menuwidget->show();
+    connect(menuwidget,SIGNAL(GetUdpLogMsg(QVector<QString>)),this,SLOT(changetable(QVector<QString>)));
+}
+
+void Application::changetable(QVector<QString> msg)
+{
+    names.push_back(msg[0]);
+    category.push_back(msg[1]);
+    price.push_back(msg[2].toUInt());
+    num.push_back(msg[3].toUInt());
+    int row = names.size()-1;
+    ui->table->insertRow(row);
+    QTableWidgetItem* item1 = new QTableWidgetItem(*(names.end()-1));
+    ui->table->setItem(row,0,item1);
+    QTableWidgetItem* item2 = new QTableWidgetItem(*(category.end()-1));
+    ui->table->setItem(row,1,item2);
+    QTableWidgetItem* item3 = new QTableWidgetItem(QString::number(*(price.end()-1)));
+    ui->table->setItem(row,2,item3);
+    QTableWidgetItem* item4 = new QTableWidgetItem(QString::number(*(num.end()-1)));
+    ui->table->setItem(row,3,item4);
+    int total = price.back()*num.back();
+    QTableWidgetItem* item5 = new QTableWidgetItem(QString::number(total));
+    ui->table->setItem(row,4,item5);
 }

@@ -30,6 +30,8 @@ private slots:
     void on_pushButton_4_clicked();
 
     void changetable(QVector<QString> msg);
+    void on_billing_3_clicked();
+
 private:
     Ui::Application *ui;
 };

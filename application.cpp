@@ -11,6 +11,7 @@
 #include "management.h"
 #include <QFile>
 #include "foodmenu.h"
+#include <login.h>
 
 QVector<QString> names;
 QVector<QString> category;
@@ -179,7 +180,7 @@ void Application::on_pushButton_3_clicked()
     {
         int del = num1->text().toInt();
         int currows = ui->table->rowCount();
-        if(currows >= del)
+        if(currows >= del && del>0)
         {
             ui->table->removeRow(del-1);
             names.erase(names.begin()+del-1);
@@ -318,4 +319,11 @@ void Application::changetable(QVector<QString> msg)
     int total = price.back()*num.back();
     QTableWidgetItem* item5 = new QTableWidgetItem(QString::number(total));
     ui->table->setItem(row,4,item5);
+}
+
+void Application::on_billing_3_clicked()
+{
+    Login* lo = new Login();
+    lo->show();
+    close();
 }

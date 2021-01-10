@@ -2,7 +2,6 @@
 #include "ui_login.h"
 #include "application.h"
 #include <QMessageBox>
-
 extern int suc;
 
 Login::Login(QWidget *parent)
@@ -10,6 +9,7 @@ Login::Login(QWidget *parent)
     , ui(new Ui::Login)
 {
     ui->setupUi(this);
+
     user = 0;
 }
 

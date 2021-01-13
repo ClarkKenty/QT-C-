@@ -13,10 +13,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Login w;
-    setStyle("D:\\QtRelease\\blue.css");
+    setStyle(":/css/Adaptic.qss");
     w.setWindowTitle("登录");
     w.show();
     return a.exec();
 }
-
-

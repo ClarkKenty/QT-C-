@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>blue.css</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>css/Adaptic.qss</file>
+    </qresource>
+</RCC>

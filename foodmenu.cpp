@@ -28,7 +28,6 @@ foodmenu::foodmenu(QWidget *parent) :
     {
         QTableWidgetItem* item = new QTableWidgetItem(QString::number(ratings[i+1]));
         ui->menulist->setItem(ratings[i]-1,3,item);
-
     }
     file1.close();
 }
@@ -108,7 +107,7 @@ void foodmenu::on_pushButton_2_clicked()
         QTableWidgetItem* item5 = new QTableWidgetItem(rate);
         ui->menulist->setItem(serial-1,3,item5);
         QFile file1("rate.txt");
-        file1.open(QIODevice::ReadWrite| QIODevice::Text);
+        file1.open(QIODevice::ReadWrite| QIODevice::Text |QIODevice::Append);
         QTextStream filerate(&file1);
         filerate<<serial<<" "<<rate<<"\n";
         file1.close();

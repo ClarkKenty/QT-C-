@@ -14,9 +14,9 @@ management::management(QWidget *parent) :
     ui(new Ui::management)
 {
     ui->setupUi(this);
-    QFile file1("count.txt");
-    QFile file2("history.txt");
-    QFile file3("saves.txt");
+    QFile file1("count.txt");//加载订单数量文件
+    QFile file2("history.txt");//加载订单日志文件
+    QFile file3("saves.txt");//加载订单汇总文件
     file1.open(QIODevice::ReadOnly| QIODevice::Text);
     QTextStream filecount(&file1);
     filecount.setCodec("utf-8");
@@ -26,9 +26,9 @@ management::management(QWidget *parent) :
     file3.open(QIODevice::ReadOnly| QIODevice::Text);
     QTextStream filesave(&file3);
     filesave.setCodec("utf-8");
-    QString allhis = filehist.readAll();
+    QString allhis = filehist.readAll();//将订单日志写入文本框
     ui->historyorder->append(allhis);
-    QString allsaves = filesave.readAll();
+    QString allsaves = filesave.readAll();//将订单汇总写入文本框
     ui->order_sum->setText(allsaves);
     file1.close();
     file2.close();
@@ -40,7 +40,7 @@ management::~management()
     delete ui;
 }
 
-void management::on_pushButton_2_clicked()
+void management::on_pushButton_2_clicked()//用户点击删除日志按钮
 {
     QFile file("history.txt");
     file.open(QIODevice::WriteOnly);
@@ -48,7 +48,7 @@ void management::on_pushButton_2_clicked()
     ui->historyorder->clear();
 }
 
-void management::on_pushButton_clicked()
+void management::on_pushButton_clicked()//用户点击删除订单汇总按钮
 {
     QFile file1("count.txt");
     QFile file3("saves.txt");
@@ -59,7 +59,7 @@ void management::on_pushButton_clicked()
     ui->order_sum->clear();
 }
 
-void management::on_pushButton_3_clicked()
+void management::on_pushButton_3_clicked()//用户点击修改按钮
 {
     QFile file1("count.txt");
     QFile file3("saves.txt");
@@ -67,10 +67,9 @@ void management::on_pushButton_3_clicked()
     file3.open(QIODevice::ReadOnly| QIODevice::Text);
     QTextStream file1t(&file1);
     int nums;
-    file1t>>nums;
+    file1t>>nums;//读入当前订单数量
     nums-=1;
-    //
-    QDialog diag;
+    QDialog diag;//弹出修改订单对话框
     diag.setWindowTitle("修改");
     QFormLayout form(&diag);
     form.setVerticalSpacing(15);
@@ -88,7 +87,7 @@ void management::on_pushButton_3_clicked()
     form.addRow(&button);
     if(diag.exec()==QDialog::Accepted)
     {
-        if(num1->text()=="")
+        if(num1->text()=="")//用户为输入修改项序号，弹出提示框
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
@@ -96,7 +95,7 @@ void management::on_pushButton_3_clicked()
             warning->show();
             return;
         }
-        if(num1->text().toInt()>nums || num1->text().toInt()<=0)
+        if(num1->text().toInt()>nums || num1->text().toInt()<=0)//输入项超出范围
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
@@ -142,7 +141,7 @@ void management::on_pushButton_3_clicked()
         file3.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream editor(&file3);
         editor.setCodec("utf-8");
-        editor<<tempsaves;
+        editor<<tempsaves;//将修改后的数据重新写入文件
         ui->order_sum->setText(tempsaves);
     }
 }

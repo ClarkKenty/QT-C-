@@ -13,21 +13,18 @@
 #include "foodmenu.h"
 #include <login.h>
 
-QVector<QString> names;
-QVector<QString> category;
-QVector<int> price;
-QVector<int> num;
-QVector<int> saves;
-QVector<QString> timesaves;
-QVector<QString> loginfo;
-int ordercount;
+QVector<QString> names;//菜品名字
+QVector<QString> category;//菜品种类
+QVector<int> price;//菜品价格
+QVector<int> num;//菜品数量
+int ordercount;//订单编号
 
 Application::Application(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Application)
 {
     ui->setupUi(this);
-    mode = 0;
+    mode = 0;//用户权限
 }
 
 Application::~Application()
@@ -35,9 +32,9 @@ Application::~Application()
     delete ui;
 }
 
-void Application::on_pushButton_clicked()
+void Application::on_pushButton_clicked()//用户点击添加菜品按钮
 {
-    QDialog diag;
+    QDialog diag;//添加菜品对话框
     diag.setWindowTitle("添加菜品");
     diag.resize(200,20);
     QFormLayout form(&diag);
@@ -57,9 +54,9 @@ void Application::on_pushButton_clicked()
     connect(&button,SIGNAL(accepted()),&diag,SLOT(accept()));
     connect(&button,SIGNAL(rejected()),&diag,SLOT(reject()));
     form.addRow(&button);
-    if(diag.exec()==QDialog::Accepted)
+    if(diag.exec()==QDialog::Accepted)//若用户点击OK按钮
     {
-        if(food_name->text()=="" || food_class->text()=="" || food_price->text()=="" || food_num->text()=="")
+        if(food_name->text()=="" || food_class->text()=="" || food_price->text()=="" || food_num->text()=="")//判断用户是否遗漏点单信息
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
@@ -67,11 +64,12 @@ void Application::on_pushButton_clicked()
             warning->show();
             return;
         }
+        //将输入的点单信息加入数组存储中
         names.push_back(food_name->text());
         category.push_back(food_class->text());
         price.push_back(food_price->text().toInt());
         num.push_back(food_num->text().toInt());
-        int row = names.size()-1;
+        int row = names.size()-1;//增加表格行数
         ui->table->insertRow(row);
         QTableWidgetItem* item1 = new QTableWidgetItem(*(names.end()-1));
         ui->table->setItem(row,0,item1);
@@ -88,14 +86,14 @@ void Application::on_pushButton_clicked()
     }
 }
 
-void Application::on_billing_clicked()
+void Application::on_billing_clicked()//用户点击结账按钮
 {
-    int totalprice = 0;
+    int totalprice = 0;//生成总金额
     for(int i =0;i<num.size();i++)
     {
         totalprice+=num[i]*price[i];
     }
-    if(totalprice == 0)
+    if(totalprice == 0)//用户添加菜品信息
     {
         QMessageBox* warning = new QMessageBox();
         warning->setWindowTitle("Warning");
@@ -103,20 +101,44 @@ void Application::on_billing_clicked()
         warning->show();
         return;
     }
-    QDateTime current_time = QDateTime::currentDateTime();
+    QDialog diag;
+    diag.setWindowTitle("服务员");
+    QFormLayout form(&diag);
+    form.setVerticalSpacing(15);
+    form.addRow(new QLabel("输入服务员编号："));
+    QLineEdit* waiter = new QLineEdit(&diag);
+    form.addRow("编号：",waiter);
+    QDialogButtonBox button(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, &diag);
+    form.addRow(&button);
+    connect(&button,SIGNAL(accepted()),&diag,SLOT(accept()));
+    connect(&button,SIGNAL(rejected()),&diag,SLOT(reject()));
+    QString waiterid;
+    if(diag.exec()==QDialog::Accepted)//若用户点击OK按钮
+    {
+        waiterid = waiter->text();
+        qDebug()<<"a";
+        diag.close();
+    }
+    else{
+        QMessageBox* fail = new QMessageBox();
+        fail->setWindowTitle("warning");
+        fail->setText("请输入服务员编号！");;
+        fail->show();
+        diag.close();
+        return;
+    }
+    QDateTime current_time = QDateTime::currentDateTime();//获取当前时间
     QString date_time = current_time.toString("yyyy.MM.dd hh:mm:ss");
-    ui->table->clearContents();
+    ui->table->clearContents();//结账完成，清空当前点单表格
     ui->table->setRowCount(0);
-    saves.push_back(totalprice);
-    timesaves.push_back(date_time);
-    QMessageBox* bill = new QMessageBox();
+    QMessageBox* bill = new QMessageBox();//显示订单总金额提示框
     bill->setWindowTitle("订单金额");
     bill->setText("创建订单成功！总金额为：" + QString::number(totalprice));
     bill->show();
-    ui->suclog->append("生成订单! 订单金额："+QString::number(totalprice)+" 时间：" + date_time);
+    ui->suclog->append("生成订单! 订单金额："+QString::number(totalprice)+" 时间：" + date_time+" 服务员："+waiterid);
     ui->suclog->append("======订单内容======");
-    QFile file2("count.txt");
-    file2.open(QIODevice::ReadWrite| QIODevice::Text);
+    QFile file2("count.txt");//该文件记录总订单数
+    file2.open(QIODevice::ReadWrite| QIODevice::Text);//先读取当前订单数
     QTextStream getnum(&file2);
     QString numcount = getnum.readLine();
     if(numcount!="")
@@ -124,16 +146,16 @@ void Application::on_billing_clicked()
         ordercount = numcount.toInt();
     }
     else ordercount = 1;
-    file2.close();
-    file2.open(QIODevice::WriteOnly| QIODevice::Text);
+    file2.close();//读取完毕，关闭文件
+    file2.open(QIODevice::WriteOnly| QIODevice::Text);//在当前订单数的基础上加1，并重新写入文件
     QTextStream writenum(&file2);
     writenum<<ordercount+1;
-    file2.close();
-    QString logg;
-    QString logg2;
-    logg2.append("订单编号：#"+QString::number(ordercount) + " 订单金额："+QString::number(totalprice)+" 时间：" + date_time+"\n");
-    logg.append("订单金额："+QString::number(totalprice)+" 时间：" + date_time+"\n");
-    QFile filehis("saves.txt");
+    file2.close();//写入完毕，关闭文件
+    QString logg;//记录订单日志
+    QString logg2;//记录订单汇总
+    logg2.append("订单编号：#"+QString::number(ordercount) + " 订单金额："+QString::number(totalprice)+" 时间：" + date_time+" 服务员："+waiterid+"\n");
+    logg.append("订单金额："+QString::number(totalprice)+" 时间：" + date_time+" 服务员："+waiterid+"\n");
+    QFile filehis("saves.txt");//将订单汇总写入文件
     filehis.open(QIODevice::WriteOnly| QIODevice::Text | QIODevice::Append);
     QTextStream writee(&filehis);
     writee.setCodec("utf-8");
@@ -153,9 +175,7 @@ void Application::on_billing_clicked()
     num.clear();
     ui->suclog->append("===================");
     logg.append("===================\n\n");
-    loginfo.push_back(logg);
-
-    QFile file("history.txt");
+    QFile file("history.txt");//将订单日志写入文件
     file.open(QIODevice::WriteOnly| QIODevice::Text | QIODevice::Append);
     QTextStream writehis(&file);
     writehis.setCodec("utf-8");
@@ -163,9 +183,9 @@ void Application::on_billing_clicked()
     file.close();
 }
 
-void Application::on_pushButton_3_clicked()
+void Application::on_pushButton_3_clicked()//用户点击删除按钮
 {
-    QDialog diag;
+    QDialog diag;//弹出删除信息对话框
     diag.setWindowTitle("删除");
     QFormLayout form(&diag);
     form.setVerticalSpacing(15);
@@ -178,9 +198,9 @@ void Application::on_pushButton_3_clicked()
     form.addRow(&button);
     if(diag.exec()==QDialog::Accepted)
     {
-        int del = num1->text().toInt();
+        int del = num1->text().toInt();//在表格中删除用户指定行数
         int currows = ui->table->rowCount();
-        if(currows >= del && del>0)
+        if(currows >= del && del>0)//在存储信息的数组中删除用户指定行数
         {
             ui->table->removeRow(del-1);
             names.erase(names.begin()+del-1);
@@ -189,7 +209,7 @@ void Application::on_pushButton_3_clicked()
             category.erase(category.begin()+del-1);
         }
 
-        else{
+        else{//用户输入的编号超出数据范围，弹出提示
             QMessageBox* mes = new QMessageBox();
             mes->setWindowTitle("Warning");
             mes->setText("该项不存在！");
@@ -198,9 +218,9 @@ void Application::on_pushButton_3_clicked()
     }
 }
 
-void Application::on_pushButton_2_clicked()
+void Application::on_pushButton_2_clicked()//用户点击修改按钮
 {
-    QDialog diag;
+    QDialog diag;//弹出修改信息对话框
     diag.setWindowTitle("修改");
     QFormLayout form(&diag);
     form.setVerticalSpacing(15);
@@ -222,9 +242,9 @@ void Application::on_pushButton_2_clicked()
     connect(&button,SIGNAL(accepted()),&diag,SLOT(accept()));
     connect(&button,SIGNAL(rejected()),&diag,SLOT(reject()));
     form.addRow(&button);
-    if(diag.exec()==QDialog::Accepted)
+    if(diag.exec()==QDialog::Accepted)//若用户点击OK按钮
     {
-        if(num1->text()=="")
+        if(num1->text()=="")//用户未输入修改项序号，弹出提示
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
@@ -232,7 +252,7 @@ void Application::on_pushButton_2_clicked()
             warning->show();
             return;
         }
-        if(num1->text().toInt()>ui->table->rowCount() || num1->text().toInt()<=0)
+        if(num1->text().toInt()>ui->table->rowCount() || num1->text().toInt()<=0)//用户输入的序号超出范围，弹出提示信息
         {
             QMessageBox* warning = new QMessageBox();
             warning->setWindowTitle("Warning");
@@ -240,7 +260,8 @@ void Application::on_pushButton_2_clicked()
             warning->show();
             return;
         }
-        int serial = num1->text().toUInt();
+        int serial = num1->text().toUInt();//将输入的字符串转为整型序号
+        //获取用户输入的各部分信息并进行修改
         QString s1 = food_name->text();
         if(s1!="")
         {
@@ -277,9 +298,9 @@ void Application::on_pushButton_2_clicked()
     }
 }
 
-void Application::on_billing_2_clicked()
+void Application::on_billing_2_clicked()//用户点击管理按钮
 {
-    if(mode==2)
+    if(mode==2)//用户登录的账号为普通权限账号，提示权限不足
     {
         QMessageBox* fail = new QMessageBox();
         fail->setWindowTitle("失败");
@@ -287,20 +308,21 @@ void Application::on_billing_2_clicked()
         fail->show();
         return;
     }
+    //用户登录的账号为管理员账号，进入下一步操作
     management* manage = new management();
     manage->setWindowTitle("订单管理");
     manage->show();
 }
 
-void Application::on_pushButton_4_clicked()
+void Application::on_pushButton_4_clicked()//用户点击菜单按钮
 {
     foodmenu* menuwidget = new foodmenu();
     menuwidget->setWindowTitle("菜单");
-    menuwidget->show();
-    connect(menuwidget,SIGNAL(GetUdpLogMsg(QVector<QString>)),this,SLOT(changetable(QVector<QString>)));
+    menuwidget->show();//显示菜单界面
+    connect(menuwidget,SIGNAL(GetUdpLogMsg(QVector<QString>)),this,SLOT(changetable(QVector<QString>)));//将菜单部件传回的值与当前程序建立链接
 }
 
-void Application::changetable(QVector<QString> msg)
+void Application::changetable(QVector<QString> msg)//从菜单传回的值存储到当前数组，并更改点餐表格
 {
     names.push_back(msg[0]);
     category.push_back(msg[1]);
@@ -321,7 +343,7 @@ void Application::changetable(QVector<QString> msg)
     ui->table->setItem(row,4,item5);
 }
 
-void Application::on_billing_3_clicked()
+void Application::on_billing_3_clicked()//用户点击退出按钮
 {
     Login* lo = new Login();
     lo->show();
